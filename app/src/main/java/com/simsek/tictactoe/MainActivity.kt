@@ -1,6 +1,7 @@
 package com.simsek.tictactoe
 
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var count = 3
     private var mod: Int? = null
 
-    private val matrix = Array(3){Array(3){ null.toString() } }
+    private val matrix = Array(3){Array(3){ "" } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,238 +29,126 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.text1.setOnClickListener {
-            if (binding.text1.text.isNotEmpty()){
-                return@setOnClickListener
+        clickListeners()
+    }
+
+    private fun clickListeners() {
+        val textViews = listOf(
+            binding.text1, binding.text2, binding.text3,
+            binding.text4, binding.text5, binding.text6,
+            binding.text7, binding.text8, binding.text9
+        )
+
+        val matrixCoordinates = listOf(
+            Pair(0, 0), Pair(0, 1), Pair(0, 2),
+            Pair(1, 0), Pair(1, 1), Pair(1, 2),
+            Pair(2, 0), Pair(2, 1), Pair(2, 2)
+        )
+
+        textViews.forEachIndexed { index, textView ->
+            textView.setOnClickListener {
+                handleClick(textView, matrixCoordinates[index])
             }
+        }
+    }
 
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text1.text = "X"
-                    matrix[0][0] = "X"
-                }
-                0->{
-                    binding.text1.text = "O"
-                    matrix[0][0] = "O"
-                }
-            }
-
-            count ++
+    private fun handleClick(textView: TextView, coordinates: Pair<Int, Int>) {
+        if (textView.text.isNotEmpty()) {
+            return
         }
 
-        binding.text2.setOnClickListener {
-            if (binding.text2.text.isNotEmpty()){
-                return@setOnClickListener
-            }
+        mod = count % 2
+        val player = if (mod == 1) "X" else "O"
+        textView.text = player
+        matrix[coordinates.first][coordinates.second] = player
+        count++
+        matrixSize()
+    }
 
-            mod = count % 2
+    private fun matrixSize() {
 
-            when(mod){
-                1->{
-                    binding.text2.text = "X"
-                    matrix[0][1] = "X"
+        var matrixSize = 0
+        for(i in matrix){
+            for (x in i){
+                if (x.isNotEmpty()){
+                    matrixSize++
                 }
-                0->{
-                    binding.text2.text = "O"
-                    matrix[0][1] = "O"
-                }
             }
-
-            count ++
         }
-
-        binding.text3.setOnClickListener {
-            if (binding.text3.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text3.text = "X"
-                    matrix[0][2] = "X"
-                }
-                0->{
-                    binding.text3.text = "O"
-                    matrix[0][2] = "O"
-                }
-            }
-
-            count ++
-        }
-
-        binding.text4.setOnClickListener {
-            if (binding.text4.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text4.text = "X"
-                    matrix[1][0] = "X"
-                }
-                0->{
-                    binding.text4.text = "O"
-                    matrix[1][0] = "O"
-                }
-            }
-
-            count ++
-        }
-
-        binding.text5.setOnClickListener {
-            if (binding.text5.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text5.text = "X"
-                    matrix[1][1] = "X"
-                }
-                0->{
-                    binding.text5.text = "O"
-                    matrix[1][1] = "O"
-                }
-            }
-
-            count ++
-        }
-
-        binding.text6.setOnClickListener {
-            if (binding.text6.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text6.text = "X"
-                    matrix[1][2] = "X"
-                }
-                0->{
-                    binding.text6.text = "O"
-                    matrix[1][2] = "O"
-                }
-            }
-
-            count ++
-        }
-
-        binding.text7.setOnClickListener {
-            if (binding.text7.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text7.text = "X"
-                    matrix[2][0] = "X"
-                }
-                0->{
-                    binding.text7.text = "O"
-                    matrix[2][0] = "O"
-                }
-            }
-
-            count ++
-        }
-
-        binding.text8.setOnClickListener {
-            if (binding.text8.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text8.text = "X"
-                    matrix[2][1] = "X"
-                }
-                0->{
-                    binding.text8.text = "O"
-                    matrix[2][1] = "O"
-                }
-            }
-
-            count ++
-        }
-
-        binding.text9.setOnClickListener {
-            if (binding.text9.text.isNotEmpty()){
-                return@setOnClickListener
-            }
-
-            mod = count % 2
-
-            when(mod){
-                1->{
-                    binding.text9.text = "X"
-                    matrix[2][2] = "X"
-                }
-                0->{
-                    binding.text9.text = "O"
-                    matrix[2][2] = "O"
-                }
-            }
-
-            count ++
+        if (matrixSize >= 5){
+            control()
         }
     }
 
     private fun control() {
 
-        if (matrix[0][0] == matrix[0][1] && matrix[0][1] == matrix[0][2]){
+        if (matrix[0][0] == matrix[0][1] && matrix[0][0] == matrix[0][2] && matrix[0][0].isNotEmpty()){
             when(matrix[0][0]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[1][0] == matrix[1][1] && matrix[1][0] == matrix[1][2]){
+            restartGame()
+        }else if (matrix[1][0] == matrix[1][1] && matrix[1][0] == matrix[1][2] && matrix[1][0].isNotEmpty()){
             when(matrix[1][0]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[2][0] == matrix[2][1] && matrix[2][0] == matrix[2][2]){
+            restartGame()
+        }else if (matrix[2][0] == matrix[2][1] && matrix[2][0] == matrix[2][2] && matrix[2][0].isNotEmpty()){
             when(matrix[2][0]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[0][0] == matrix[1][0] && matrix[0][0] == matrix[2][0]){
+            restartGame()
+        }else if (matrix[0][0] == matrix[1][0] && matrix[0][0] == matrix[2][0] && matrix[0][0].isNotEmpty()){
             when(matrix[0][0]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[0][1] == matrix[1][1] && matrix[0][1] == matrix[2][1]){
+            restartGame()
+        }else if (matrix[0][1] == matrix[1][1] && matrix[0][1] == matrix[2][1] && matrix[0][1].isNotEmpty()){
             when(matrix[0][1]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[0][2] == matrix[1][2] && matrix[0][2] == matrix[2][2]){
+            restartGame()
+        }else if (matrix[0][2] == matrix[1][2] && matrix[0][2] == matrix[2][2] && matrix[0][2].isNotEmpty()){
             when(matrix[0][2]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[0][0] == matrix[1][1] && matrix[0][0] == matrix[2][2]){
+            restartGame()
+        }else if (matrix[0][0] == matrix[1][1] && matrix[0][0] == matrix[2][2] && matrix[0][0].isNotEmpty()){
             when(matrix[0][0]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
-        }else if (matrix[0][2] == matrix[1][1] && matrix[0][2] == matrix[2][0]){
+            restartGame()
+        }else if (matrix[0][2] == matrix[1][1] && matrix[0][2] == matrix[2][0] && matrix[0][2].isNotEmpty()){
             when(matrix[0][2]){
                 "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
                 "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
             }
+            restartGame()
         }
+    }
+
+    private fun restartGame() {
+        // Matrisi boşalt
+        for (i in 0 until matrix.size) {
+            for (j in 0 until matrix[i].size) {
+                matrix[i][j] = ""
+            }
+        }
+        // Sayacı sıfırla
+        count = 3
+
+        // Tüm TextView'ları temizle
+        val textViews = listOf(
+            binding.text1, binding.text2, binding.text3,
+            binding.text4, binding.text5, binding.text6,
+            binding.text7, binding.text8, binding.text9
+        )
+        textViews.forEach { it.text = "" }
     }
 }
