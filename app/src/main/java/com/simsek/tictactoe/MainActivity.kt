@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var count = 3
     private var mod: Int? = null
+    private var matrixSize = 0
+    var controlList = arrayListOf<TextView>()
 
     private val matrix = Array(3){Array(3){ "" } }
 
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         textViews.forEachIndexed { index, textView ->
             textView.setOnClickListener {
                 handleClick(textView, matrixCoordinates[index])
+                controlList.add(textView)
             }
         }
     }
@@ -67,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun matrixSize() {
 
-        var matrixSize = 0
+        matrixSize = 0
         for(i in matrix){
             for (x in i){
                 if (x.isNotEmpty()){
