@@ -1,6 +1,8 @@
 package com.simsek.tictactoe
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.simsek.tictactoe.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,8 +36,9 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        clickListeners()
+        binding.start.setOnClickListener {
+            clickListeners()
+        }
     }
 
     private fun clickListeners() {
@@ -137,6 +144,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restartGame() {
+        /*binding.start.text = "Restart Game"
         // Matrisi boşalt
         for (i in 0 until matrix.size) {
             for (j in 0 until matrix[i].size) {
@@ -153,5 +161,7 @@ class MainActivity : AppCompatActivity() {
             binding.text7, binding.text8, binding.text9
         )
         textViews.forEach { it.text = "" }
+        */
+        recreate()
     }
 }

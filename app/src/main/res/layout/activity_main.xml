@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="@string/start"
         tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="62dp"/>
+        tools:layout_editor_absoluteY="62dp" />
 
     <FrameLayout
         android:layout_width="wrap_content"
