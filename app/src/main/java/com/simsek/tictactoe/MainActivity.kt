@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -157,5 +158,14 @@ class MainActivity : AppCompatActivity() {
         textViews.forEach { it.text = "" }
         */
         recreate()
+    }
+
+    private fun alert(winner: String){
+        val builder =  AlertDialog.Builder(this)
+        builder.setTitle("Oyun Bitti")
+        builder.setMessage("$winner kazandı")
+        builder.setPositiveButton("Tekrar Oyna"){dialog, which ->
+            restartGame()
+        }
     }
 }
