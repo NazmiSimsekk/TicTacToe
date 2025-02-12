@@ -2,7 +2,6 @@ package com.simsek.tictactoe
 
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -88,75 +87,25 @@ class MainActivity : AppCompatActivity() {
     private fun control() {
 
         if (matrix[0][0] == matrix[0][1] && matrix[0][0] == matrix[0][2] && matrix[0][0].isNotEmpty()){
-            when(matrix[0][0]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[0][0])
         }else if (matrix[1][0] == matrix[1][1] && matrix[1][0] == matrix[1][2] && matrix[1][0].isNotEmpty()){
-            when(matrix[1][0]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[1][0])
         }else if (matrix[2][0] == matrix[2][1] && matrix[2][0] == matrix[2][2] && matrix[2][0].isNotEmpty()){
-            when(matrix[2][0]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[2][0])
         }else if (matrix[0][0] == matrix[1][0] && matrix[0][0] == matrix[2][0] && matrix[0][0].isNotEmpty()){
-            when(matrix[0][0]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[0][0])
         }else if (matrix[0][1] == matrix[1][1] && matrix[0][1] == matrix[2][1] && matrix[0][1].isNotEmpty()){
-            when(matrix[0][1]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[0][1])
         }else if (matrix[0][2] == matrix[1][2] && matrix[0][2] == matrix[2][2] && matrix[0][2].isNotEmpty()){
-            when(matrix[0][2]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[0][2])
         }else if (matrix[0][0] == matrix[1][1] && matrix[0][0] == matrix[2][2] && matrix[0][0].isNotEmpty()){
-            when(matrix[0][0]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[0][0])
         }else if (matrix[0][2] == matrix[1][1] && matrix[0][2] == matrix[2][0] && matrix[0][2].isNotEmpty()){
-            when(matrix[0][2]){
-                "X" -> Toast.makeText(this, "X kazandı", Toast.LENGTH_LONG).show()
-                "O" -> Toast.makeText(this, "O kazandı", Toast.LENGTH_LONG).show()
-            }
-            restartGame()
+            alert(matrix[0][2])
         }
     }
 
     private fun restartGame() {
-        /*binding.start.text = "Restart Game"
-        // Matrisi boşalt
-        for (i in 0 until matrix.size) {
-            for (j in 0 until matrix[i].size) {
-                matrix[i][j] = ""
-            }
-        }
-        // Sayacı sıfırla
-        count = 3
-
-        // Tüm TextView'ları temizle
-        val textViews = listOf(
-            binding.text1, binding.text2, binding.text3,
-            binding.text4, binding.text5, binding.text6,
-            binding.text7, binding.text8, binding.text9
-        )
-        textViews.forEach { it.text = "" }
-        */
         recreate()
     }
 
@@ -167,5 +116,6 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton("Tekrar Oyna"){dialog, which ->
             restartGame()
         }
+        builder.show()
     }
 }
