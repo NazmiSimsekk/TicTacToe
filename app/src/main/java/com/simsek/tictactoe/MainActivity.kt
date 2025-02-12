@@ -116,6 +116,9 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton("Tekrar Oyna"){dialog, which ->
             restartGame()
         }
+        builder.setNegativeButton("Oyundan Çık"){dialog, which ->
+            finishAndRemoveTask()
+        }
         builder.show()
     }
 }
