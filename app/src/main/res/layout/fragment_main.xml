@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF5E6"
+    android:orientation="vertical"
+    tools:context=".MainFragment">
+
+    <ImageView
+        android:id="@+id/xox"
+        android:layout_width="214dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:contentDescription="@string/xox_logo"
+        android:src="@drawable/xox" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startButton"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/start"
+        android:contentDescription="@string/start_game" />
+
+</LinearLayout>

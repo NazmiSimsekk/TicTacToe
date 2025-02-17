@@ -9,7 +9,7 @@ import android.view.View
 
 class GridView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val paint = Paint().apply {
-        color = Color.WHITE
+        color = Color.GRAY
         strokeWidth = 5f
         style = Paint.Style.STROKE
     }

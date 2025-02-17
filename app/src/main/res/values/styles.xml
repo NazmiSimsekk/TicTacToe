@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MaterialAlertDialog Teması -->
+    <style name="MaterialAlertDialog.App" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <!-- Başlık Rengi (Başlık metni rengi) -->
+    <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/alertDialogTitleColor</item> <!-- Başlık rengi -->
+    </style>
+
+    <!-- Buton Rengi (Buton metin rengi ve arka planı) -->
+    <style name="Widget.App.Button" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/alertDialogButtonTextColor</item> <!-- Buton metin rengi -->
+        <item name="android:background">@color/alertDialogButtonBackgroundColor</item> <!-- Buton arka plan rengi -->
+    </style>
+
+    <!-- Köşe Ayarları (Yuvarlatılmış köşeler) -->
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item> <!-- Köşe yuvarlama boyutu -->
+    </style>
+</resources>

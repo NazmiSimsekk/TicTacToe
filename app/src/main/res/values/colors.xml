@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="alertDialogBackground">#F0F8FF</color> <!-- Açık mavi arka plan -->
+
+    <!-- Başlık rengi -->
+    <color name="alertDialogTitleColor">#B0E0E6</color> <!-- Açık mavi başlık rengi -->
+
+    <!-- Buton metin rengi -->
+    <color name="alertDialogButtonTextColor">#E6B8FF</color> <!-- Açık mor buton metin rengi -->
+
+    <!-- Buton arka plan rengi -->
+    <color name="alertDialogButtonBackgroundColor">#B0E0E6</color> <!-- Açık mavi buton arka planı -->
 </resources>
