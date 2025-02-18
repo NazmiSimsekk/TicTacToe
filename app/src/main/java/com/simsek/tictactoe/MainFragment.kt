@@ -32,6 +32,7 @@ class MainFragment : Fragment() {
         binding.startButton.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToGameFragment()
             Navigation.findNavController(it).navigate(action)
+            onDestroy()
         }
     }
 

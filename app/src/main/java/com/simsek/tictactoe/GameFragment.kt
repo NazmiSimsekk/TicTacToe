@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.simsek.tictactoe.databinding.FragmentGameBinding
 
@@ -18,7 +19,6 @@ class GameFragment : Fragment() {
     private var count = 3
     private var mod: Int? = null
     private var matrixSize = 0
-    private var controlList = arrayListOf<TextView>()
     private val matrix = Array(3){Array(3){ "" } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +61,6 @@ class GameFragment : Fragment() {
         textViews.forEachIndexed { index, textView ->
             textView.setOnClickListener {
                 handleClick(textView, matrixCoordinates[index])
-                controlList.add(textView)
             }
         }
     }
@@ -74,8 +73,8 @@ class GameFragment : Fragment() {
         mod = count % 2
         val player = if (mod == 1) "X" else "O"
         when(player){
-            "X" -> textView.setTextColor(Color.parseColor("#B0E0E6"))
-            "O" -> textView.setTextColor(Color.parseColor("#E6B8FF"))
+            "X" -> textView.setTextColor(Color.parseColor("#9C27B0"))
+            "O" -> textView.setTextColor(Color.parseColor("#00BCD4"))
         }
         textView.text = player
         matrix[coordinates.first][coordinates.second] = player
@@ -101,21 +100,23 @@ class GameFragment : Fragment() {
     private fun control() {
 
         if (matrix[0][0] == matrix[0][1] && matrix[0][0] == matrix[0][2] && matrix[0][0].isNotEmpty()){
-            alert(matrix[0][0])
+            alert(matrix[0][0] + " Winner")
         }else if (matrix[1][0] == matrix[1][1] && matrix[1][0] == matrix[1][2] && matrix[1][0].isNotEmpty()){
-            alert(matrix[1][0])
+            alert(matrix[1][0] + " Winner")
         }else if (matrix[2][0] == matrix[2][1] && matrix[2][0] == matrix[2][2] && matrix[2][0].isNotEmpty()){
-            alert(matrix[2][0])
+            alert(matrix[2][0] + " Winner")
         }else if (matrix[0][0] == matrix[1][0] && matrix[0][0] == matrix[2][0] && matrix[0][0].isNotEmpty()){
-            alert(matrix[0][0])
+            alert(matrix[0][0] + " Winner")
         }else if (matrix[0][1] == matrix[1][1] && matrix[0][1] == matrix[2][1] && matrix[0][1].isNotEmpty()){
-            alert(matrix[0][1])
+            alert(matrix[0][1] + " Winner")
         }else if (matrix[0][2] == matrix[1][2] && matrix[0][2] == matrix[2][2] && matrix[0][2].isNotEmpty()){
-            alert(matrix[0][2])
+            alert(matrix[0][2] + " Winner")
         }else if (matrix[0][0] == matrix[1][1] && matrix[0][0] == matrix[2][2] && matrix[0][0].isNotEmpty()){
-            alert(matrix[0][0])
+            alert(matrix[0][0] + " Winner")
         }else if (matrix[0][2] == matrix[1][1] && matrix[0][2] == matrix[2][0] && matrix[0][2].isNotEmpty()){
-            alert(matrix[0][2])
+            alert(matrix[0][2] + " Winner")
+        }else if(matrixSize == 9){
+            alert("Draw")
         }
     }
 
@@ -127,13 +128,17 @@ class GameFragment : Fragment() {
     }
 
     private fun alert(winner: String){
-        val builder =  MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_App)
-        builder.setTitle("Oyun Bitti")
-        builder.setMessage("$winner kazandı")
-        builder.setPositiveButton("Tekrar Oyna"){dialog, which ->
+        val builder =  MaterialAlertDialogBuilder(requireContext(),R.style.ThemeOverlay_Material3_MaterialAlertDialog_)
+        builder.setTitle(winner)
+        builder.setPositiveButton("Play Again"){dialog, which ->
             restartGame()
         }
-        builder.setNegativeButton("Oyundan Çık"){dialog, which ->
+        builder.setNeutralButton("Menu"){dialog, which ->
+            val action = GameFragmentDirections.actionGameFragmentToMainFragment()
+            Navigation.findNavController(requireView()).navigate(action)
+            onDestroy()
+        }
+        builder.setNegativeButton("Quit Game"){dialog, which ->
             requireActivity().finishAndRemoveTask()
         }
         builder.setCancelable(false)
