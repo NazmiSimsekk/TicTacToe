@@ -2,10 +2,4 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <color name="alertDialogBackground">#6200EA</color> <!-- Beyaz veya hafif pastel bir arka plan -->
-    <color name="alertDialogTextColor">#FF6D00</color> <!-- Koyu gri metin rengi -->
-    <color name="alertDialogTitleColor">#FFD600</color> <!-- Daha koyu başlık rengi -->
-    <color name="alertDialogButtonTextColor">#D81B60</color>
-    <color name="shrine_pink_900">#AA00FF</color>
 </resources>

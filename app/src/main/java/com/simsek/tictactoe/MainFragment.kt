@@ -34,6 +34,10 @@ class MainFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
             onDestroy()
         }
+
+        binding.quitButton.setOnClickListener{
+            requireActivity().finishAndRemoveTask()
+        }
     }
 
     override fun onDestroy() {

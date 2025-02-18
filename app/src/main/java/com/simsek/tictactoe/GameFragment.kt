@@ -128,7 +128,7 @@ class GameFragment : Fragment() {
     }
 
     private fun alert(winner: String){
-        val builder =  MaterialAlertDialogBuilder(requireContext(),R.style.ThemeOverlay_Material3_MaterialAlertDialog_)
+        val builder =  MaterialAlertDialogBuilder(requireContext())
         builder.setTitle(winner)
         builder.setPositiveButton("Play Again"){dialog, which ->
             restartGame()
@@ -137,9 +137,6 @@ class GameFragment : Fragment() {
             val action = GameFragmentDirections.actionGameFragmentToMainFragment()
             Navigation.findNavController(requireView()).navigate(action)
             onDestroy()
-        }
-        builder.setNegativeButton("Quit Game"){dialog, which ->
-            requireActivity().finishAndRemoveTask()
         }
         builder.setCancelable(false)
         builder.show()
