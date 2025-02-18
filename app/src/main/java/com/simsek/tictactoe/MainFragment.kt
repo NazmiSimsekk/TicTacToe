@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startButton.setOnClickListener{
+        binding.twoPlayerButton.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToGameFragment()
             Navigation.findNavController(it).navigate(action)
             onDestroy()

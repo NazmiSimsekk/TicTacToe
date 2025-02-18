@@ -20,12 +20,6 @@ class GridView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         style = Paint.Style.STROKE
     }
 
-    private val winningLinePaint = Paint().apply {
-        color = Color.parseColor("#FFEB3B")  // Kazanma çizgisi için parlak sarı
-        strokeWidth = 6f  // Kalın çizgi
-        style = Paint.Style.STROKE
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val cellWidth = width / 3
@@ -43,10 +37,5 @@ class GridView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
         // Dış kenarlıkları çiz
         canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
-    }
-
-    // Kazanan çizgisi çizme fonksiyonu
-    fun drawWinningLine(canvas: Canvas, startX: Float, startY: Float, endX: Float, endY: Float) {
-        canvas.drawLine(startX, startY, endX, endY, winningLinePaint)
     }
 }
