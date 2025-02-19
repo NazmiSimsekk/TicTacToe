@@ -32,7 +32,6 @@ class MainFragment : Fragment() {
         binding.twoPlayerButton.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToGameFragment()
             Navigation.findNavController(it).navigate(action)
-            onDestroy()
         }
 
         binding.quitButton.setOnClickListener{

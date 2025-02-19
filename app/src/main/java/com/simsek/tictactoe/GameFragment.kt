@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.simsek.tictactoe.databinding.FragmentGameBinding
 
@@ -134,9 +133,7 @@ class GameFragment : Fragment() {
             restartGame()
         }
         builder.setNeutralButton("Menu"){dialog, which ->
-            val action = GameFragmentDirections.actionGameFragmentToMainFragment()
-            Navigation.findNavController(requireView()).navigate(action)
-            onDestroy()
+            parentFragmentManager.popBackStack()
         }
         builder.setCancelable(false)
         builder.show()
